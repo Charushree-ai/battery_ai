@@ -33,7 +33,7 @@ battery_hist = {
 
 
 df = pd.DataFrame(data)
-img_path="\assets\gaston_plante.jpg"
+img_path=r"\assets\gaston_plante.jpg"
 # print(os.path.exists(img_src))
 img_src = "data:image/jpeg;base64," + encode_image(img_path)
 # Layout for the application
