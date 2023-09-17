@@ -33,7 +33,8 @@ battery_hist = {
 
 
 df = pd.DataFrame(data)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 img_path = os.path.join(BASE_DIR, 'assets/gaston_plante.jpg')
 img_src = "data:image/jpeg;base64," + encode_image(img_path)
 # Layout for the application
