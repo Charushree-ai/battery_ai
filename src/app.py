@@ -8,6 +8,8 @@ import dash_bootstrap_components as dbc
 
 # Create a Dash application
 app = dash.Dash(__name__,  external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
+
 
 def encode_image(image_filename):
     with open(image_filename, 'rb') as f:
