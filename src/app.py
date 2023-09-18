@@ -5,6 +5,7 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 battery_discovery_data = [
     {"Year": 1800, "Event": "Alessandro Volta invents the Voltaic Pile", "Battery_Type": "[Zn-Cu]"},
@@ -95,108 +96,6 @@ app.layout = html.Div(
     ],
     style={"height": "100vh"}
 )
-
-
-# Define callbacks to update tab content
-@app.callback(
-    Output("tab-content", "children"),
-    Input("tabs", "value"),
-)
-def render_tab_content(tab):
-    if tab == "Battery History":
-        return html.Div([
-            html.H3("History of Batteries", style={'text-align': 'center', "color": "black"}),
-            dbc.Row(
-                [
-                    dbc.Col(
-                        html.Div(
-                            [
-                                html.P(f"Year: {event['Year']}"),
-                                html.P(f"{event['Event']}  Type :  {event['Battery_Type']}"),
-                                html.Hr(),
-                            ]
-                        ), width="100vp", style={"textAlign": "center", "color": "black"})
-                    for event in battery_discovery_data]
-            ),
-
-        ],
-
-        )
-    elif tab == "Artificial ageing":
-        return html.Div([
-            html.Hr(),
-            html.Hr(),
-            dbc.Row([
-                dbc.Col([
-                    html.H4("Artificial ageing factors which effect the battery life", style={'color': 'black'}),
-                    bar_chart,
-
-                ], width=6),
-                dbc.Col(
-                    [
-                        html.H4("Battery Usage in Different Domains", style={'color': 'black'}),
-                        pie_chart,
-                    ]
-                )
-            ])
-        ])
-    elif tab == "AI":
-        return html.Div([
-            dbc.Container([
-                html.Hr(),
-                html.Hr(),
-                dbc.Row([
-                    dbc.Col(
-                        dbc.Card([
-                            dbc.CardHeader("Early Days (Pre-2000s)", style={'background-color': '#B3E0FF'}),
-                            dbc.CardBody([
-                                html.P("Basic battery monitoring systems used in telecommunications and UPS."),
-                                html.P("Simple models and rule-based approaches for battery health estimation."),
-                                html.P("Introduction of basic battery management systems in EVs."),
-                            ]),
-                        ]),
-                        width=9)]),
-                dbc.Row([
-                    dbc.Col(
-                        dbc.Card([
-                            dbc.CardHeader("2000s", style={'background-color': '#B3E0FF'}),
-                            dbc.CardBody([
-                                html.P(
-                                    "Adoption of battery monitoring in aviation, aerospace, and telecommunications."),
-                                html.P("Application of SVMs and NNs to battery monitoring."),
-                                html.P("Advanced battery management systems in hybrid and electric vehicles."),
-                            ]),
-                        ]),
-                        width=9),
-                ]),
-                dbc.Row([
-                    dbc.Col(
-                        dbc.Card([
-                            dbc.CardHeader("2010s", style={'background-color': '#B3E0FF'}),
-                            dbc.CardBody([
-                                html.P("Rise of lithium-ion batteries in consumer electronics and renewable energy."),
-                                html.P(
-                                    "Widespread use of ML in renewable energy applications and industrial batteries."),
-                                html.P(
-                                    "Integration of ML in EVs for battery health prediction and thermal management."),
-                            ]),
-                        ]),
-                        width=9)]),
-                dbc.Row([
-                    dbc.Col(
-                        dbc.Card([
-                            dbc.CardHeader("Recent Advances (2020s and Beyond)", style={'background-color': '#B3E0FF'}),
-                            dbc.CardBody([
-                                html.P("Continued advancements in AI and ML in various sectors."),
-                                html.P(
-                                    "Integration of AI and ML in renewable energy, consumer electronics, and industrial batteries."),
-                                html.P("Edge computing and IoT for real-time battery monitoring."),
-                            ]),
-                        ]),
-                        width=9),
-                ]),
-            ]),
-        ])
 
 
 if __name__ == "__main__":
