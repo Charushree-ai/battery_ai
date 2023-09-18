@@ -213,7 +213,8 @@ def render_tab_content(tab):
                          html.P("Where as Artificial intelligence is considered as the new electricity, "
                                 "It is widely used in different fields to find new solutions"),
                          html.P("The usage of ML models has increased the BMS efficieny and performance."
-                                " This is an effort to research in this area")
+                                " This is an effort to research in this area"),
+                         html.Img(src=img_src, style={'width': '300px', 'height': '250px'}, width=3)
                          ], style={'color': 'black'})
 if __name__ == "__main__":
     app.run_server(debug=True)
