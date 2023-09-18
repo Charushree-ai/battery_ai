@@ -1,3 +1,5 @@
+import os
+import base64
 import dash
 from dash import dcc, html
 import dash_bootstrap_components as dbc
@@ -6,6 +8,15 @@ import plotly.graph_objects as go
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
+
+def encode_image(image_filename):
+    with open(image_filename, 'rb') as f:
+        image = f.read()
+    return base64.b64encode(image).decode('utf-8')
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+img_path = os.path.join(BASE_DIR, 'assets/gaston_plante.jpg')
+img_src = "data:image/jpeg;base64," + encode_image(img_path)
 
 battery_discovery_data = [
     {"Year": 1800, "Event": "Alessandro Volta invents the Voltaic Pile", "Battery_Type": "[Zn-Cu]"},
@@ -194,7 +205,15 @@ def render_tab_content(tab):
                 ]),
             ]),
         ])
-    else:
-        return html.Div(html.H2("Hello"))
+    elif tab == "Self interest":
+        return html.Div([html.P("Batteries store power and are widely utilized across various fields"),
+                         html.P("To maximize the longevity of a battery, maintenance is essential."),
+                         html.P(
+                             "Implementing a battery monitoring system is crucial and advantageous to preserving its optimal lifespan"),
+                         html.P("Where as Artificial intelligence is considered as the new electricity, "
+                                "It is widely used in different fields to find new solutions"),
+                         html.P("The usage of ML models has increased the BMS efficieny and performance."
+                                " This is an effort to research in this area")
+                         ], style={'color': 'black'})
 if __name__ == "__main__":
     app.run_server(debug=True)
