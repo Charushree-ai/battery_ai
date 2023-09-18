@@ -209,14 +209,16 @@ def render_tab_content(tab):
             ]),
         ])
     elif tab == "Self interest":
-        return html.Div([html.P("Batteries store power and are widely utilized across various fields"),
+        return html.Div([
+                         html.Br(),
+                         html.P("Batteries store power and are widely utilized across various fields"),
                          html.P("To maximize the longevity of a battery, maintenance is essential."),
                          html.P(
                              "Implementing a battery monitoring system is crucial and advantageous to preserving its optimal lifespan"),
                          html.P("Where as Artificial intelligence is considered as the new electricity, "
                                 "It is widely used in different fields to find new solutions"),
                          html.P("The usage of ML models has increased the BMS efficieny and performance."
-                                " This is an effort to research in this area"),
+                                " This is an initiation to begin the research in this area"),
                          dbc.Row(
                                 [
                                 dbc.Col([
