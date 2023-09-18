@@ -17,6 +17,8 @@ def encode_image(image_filename):
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 img_path = os.path.join(BASE_DIR, 'assets/gaston_plante.jpg')
 img_src = "data:image/jpeg;base64," + encode_image(img_path)
+img_path_wall = os.path.join(BASE_DIR, 'assets/ai_wall.jpg')
+img_src_wall = "data:image/jpeg;base64," + encode_image(img_path_wall)
 
 battery_discovery_data = [
     {"Year": 1800, "Event": "Alessandro Volta invents the Voltaic Pile", "Battery_Type": "[Zn-Cu]"},
@@ -74,7 +76,7 @@ bar_chart = dcc.Graph(
 app.layout = html.Div(
     [
         dbc.Row([html.H1("BATTERIES"),
-                 html.P("Research : Charushree K S", style={'textAlign': 'right', 'color': 'white'}),
+                 html.P("Researcher : Charushree K S", style={'textAlign': 'right', 'color': 'white'}),
                  html.P("Contact : charudalu@gmail.com", style={'textAlign': 'right', 'color': 'white'})
                  #  dcc.Markdown('''
                  #         Researcher [Charushree K S](https://www.linkedin.com/in/k-s-charushree).
@@ -113,7 +115,8 @@ app.layout = html.Div(
     Input("tabs", "value"),
 )
 def render_tab_content(tab):
-    if tab == "Battery History":
+    print("hello",tab)
+    if tab == "Battery History" or tab =="tab-1":
         return html.Div([
             html.H3("History of Batteries", style={'text-align': 'center', "color": "black"}),
             dbc.Row(
@@ -214,7 +217,15 @@ def render_tab_content(tab):
                                 "It is widely used in different fields to find new solutions"),
                          html.P("The usage of ML models has increased the BMS efficieny and performance."
                                 " This is an effort to research in this area"),
-                         html.Img(src=img_src, style={'width': '300px', 'height': '250px'}, width=3)
+                         dbc.Row(
+                                [
+                                dbc.Col([
+                                html.H5("In 2020, Studying about battery"),
+                                html.Img(src=img_src, style={'width': '350px', 'height': '350px'})], width=6),
+                                dbc.Col([
+                                html.H5("In 2016, As my wall shows my inclination towards AI and Python"),
+                                html.Img(src=img_src_wall, style={'width': '400px', 'height': '300px'})], width=6)
+                                ])
                          ], style={'color': 'black'})
 if __name__ == "__main__":
     app.run_server(debug=True)
