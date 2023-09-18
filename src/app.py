@@ -97,6 +97,32 @@ app.layout = html.Div(
     style={"height": "100vh"}
 )
 
+@app.callback(
+    Output("tab-content", "children"),
+    Input("tabs", "value"),
+)
+def render_tab_content(tab):
+    if tab == "Battery History":
+        return html.Div([
+            html.H3("History of Batteries", style={'text-align': 'center', "color": "black"}),
+            dbc.Row(
+                [
+                    dbc.Col(
+                        html.Div(
+                            [
+                                html.P(f"Year: {event['Year']}"),
+                                html.P(f"{event['Event']}  Type :  {event['Battery_Type']}"),
+                                html.Hr(),
+                            ]
+                        ), width="100vp", style={"textAlign": "center", "color": "black"})
+                    for event in battery_discovery_data]
+            ),
+
+        ],
+
+        )
+    else:
+        return html.Div(html.H1("Hellos"))
 
 if __name__ == "__main__":
     app.run_server(debug=True)
