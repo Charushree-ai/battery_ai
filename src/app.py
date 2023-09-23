@@ -66,7 +66,7 @@ bar_chart = dcc.Graph(
             ),
         ],
         "layout": go.Layout(
-            title="Artificial ageing factors which effect the battery life",
+            title="Factors which effect the battery life",
             xaxis={"title": "Factors"},
             yaxis={"title": "Score"},
         ),
@@ -91,7 +91,7 @@ app.layout = html.Div(
                         dcc.Tab(label="Battery History", value="Battery History",
                                 style={'background-color': '#B3E0FF', "height": "25vh", "color": "white",
                                        'width': '465px'}),
-                        dcc.Tab(label="Artificial ageing", value="Artificial ageing",
+                        dcc.Tab(label="Ageing", value="Ageing",
                                 style={'background-color': '#B3E0FF', "height": "25vh", "color": "white",
                                        'width': '465px'}),
                         dcc.Tab(label="AI in battery monitoring system", value="AI",
@@ -133,13 +133,13 @@ def render_tab_content(tab):
             ),
 
         ])
-    elif tab == "Artificial ageing":
+    elif tab == "Ageing":
         return html.Div([
             html.Hr(),
             html.Hr(),
             dbc.Row([
                 dbc.Col([
-                    html.H4("Artificial ageing factors which effect the battery life", style={'color': 'black'}),
+                    html.H4("Factors which effect the battery life", style={'color': 'black'}),
                     bar_chart,
 
                 ], width=6),
